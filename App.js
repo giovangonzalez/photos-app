@@ -1,6 +1,5 @@
 import React from 'react';
 import { ActivityIndicator, AsyncStorage, Alert, Button, FlatList, Image, StyleSheet, Text, View } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';
 import ImageOverlay from "react-native-image-overlay";
 
 export default class App extends React.Component {
