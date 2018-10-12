@@ -89,23 +89,25 @@ export default class App extends React.Component {
     }
 
     return(//isLoading is false, so we got photos. Let's show them!
-      <View style={{flex: 1,  paddingTop:100, height:350}}>
+      <View style={{flex: 1,  paddingTop:100, height:350,}}>
         <View>
-        <FlatList
-          horizontal={true}
-          data={this.state.dataSource}
-          renderItem={({item}) => <ImageOverlay rounded={10} containerStyle={{borderWidth:2, borderColor:'#000', width:100, marginHorizontal: 10 }}  source={{uri: item.url }}
-                                    title={item.title} height={100} titleStyle={{  transform: [{ rotate: '330deg'}] }} />}
-          keyExtractor={({id}, index) => id}
-        />
+          <FlatList horizontal={true} data={this.state.dataSource} renderItem=
+            {({item}) =>
+            <View style={styles.imageView}>
+              <ImageOverlay rounded={10} containerStyle={styles.images}  source={{uri: item.url }}
+                            title={item.title} height={100} titleStyle={styles.imageTitle} />
+            </View>}
+            
+            keyExtractor={({id}, index) => id}
+          />
         </View>
         <View>
-        <Button
-          onPress={this.orderImages.bind(this)}
-          title="Reorder"
-          color="#841584"
-          accessibilityLabel="Reorder images"
-        />
+          <Button
+            onPress={this.orderImages.bind(this)}
+            title="Reorder"
+            color="#841584"
+            accessibilityLabel="Reorder images"
+          />
         </View>
       </View>
 
@@ -123,8 +125,21 @@ const styles = StyleSheet.create({
   },
   images: {
     borderRadius:10,
-    borderWidth: 1,
+    borderWidth: 2,
+    marginHorizontal: 10,
     borderColor: '#000',
-    overflow: 'hidden',
+    width: 100,
+
+  },
+  imageView: {
+    shadowColor: '#000',
+    shadowOffset: { width: 5, height: 10 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 3,
+    marginBottom: 50,
+  },
+  imageTitle: {
+    transform: [{ rotate: '330deg'}]
   }
 });
